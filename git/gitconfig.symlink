@@ -1,0 +1,14 @@
+[user]
+    name = soooooot
+    email = sooooootZHOU@gmail.com
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+
+[merge]
+    tool = meld
+[mergetool "meld"]
+    path = meld

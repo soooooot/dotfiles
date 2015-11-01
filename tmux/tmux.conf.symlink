@@ -1,0 +1,52 @@
+### <c-b> --> <c-a> 
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+########
+
+
+set-window-option -g mode-keys vi
+
+
+# Mouse works as expected
+set -g mode-mouse on
+set -g mouse-select-pane on
+set -g mouse-resize-pane on
+set -g mouse-select-window on
+
+
+# 256 colors for vim
+set -g default-terminal "screen-256color"
+############
+
+# Remap window navigation to vim
+unbind-key j
+bind-key j select-pane -D
+unbind-key k
+bind-key k select-pane -U
+unbind-key h
+bind-key h select-pane -L
+unbind-key l
+bind-key l select-pane -R
+
+# Key bindings
+bind r source-file ~/.tmux.conf \; display "Reloaded config."
+
+# status bar  [ bottom | top ]
+set -g status-position top
+
+bind-key -t vi-copy 'v' begin-selection
+# bind-key -t vi-copy 'y' copy-selection
+bind -t vi-copy y copy-pipe 'xclip -in -selection clipboard'
+
+# make vim j/k faster  
+#  like the vim set lazyredraw  ttyfast
+set -sg escape-time 0
+
+# Center the window list
+# set -g status-justify centre
+
+
+# New split pane with current_path
+bind '"' split-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"

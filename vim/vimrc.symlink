@@ -1,0 +1,377 @@
+" set vundle
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+" Plugin 'user/L9', {'name': 'newL9'}
+
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+
+
+" My Install Bundle
+Bundle 'klen/python-mode'
+
+Bundle 'chriskempson/base16-vim'
+
+" NREDTree
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+
+" Ctrl-P 
+Bundle 'kien/ctrlp.vim'
+
+" Indent Guides 显示缩进
+Bundle 'nathanaelkane/vim-indent-guides'
+" Bundle 'Yggdroot/indentLine'
+
+"
+Bundle 'Shougo/neocomplete.vim'
+" Bundle 'Shougo/neosnippet'
+" Bundle 'Shougo/neosnippet-snippets'
+"
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+" Javascript html
+" Plugin 'burnettk/vim-angular'
+"
+Bundle 'jelera/vim-javascript-syntax'
+
+" 文档上说要两个一起用
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
+
+
+Plugin 'dimasg/vim-mark'
+
+" 注释
+" Plugin 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-commentary'
+
+" 相对行号
+Bundle 'myusuf3/numbers.vim'
+
+Plugin 'Lokaltog/vim-easymotion'
+
+" Git 修改行数
+Bundle 'mhinz/vim-signify'
+
+Plugin 'bling/vim-airline'
+
+Bundle 'scrooloose/syntastic'
+
+" html 
+Plugin 'mattn/emmet-vim'
+
+" CSS
+Bundle 'ap/vim-css-color'
+
+" tag bar
+Bundle 'majutsushi/tagbar'
+
+" ag search 
+Bundle 'rking/ag.vim'
+Bundle 'taiansu/nerdtree-ag'
+
+
+"""""""" javsscript /html"""
+
+" 先看看不用的效果, 暂时不装这个了
+" Plugin 'pangloss/vim-javascript'
+
+" 补全
+Bundle 'othree/javascript-libraries-syntax.vim'
+
+
+" colorscheme
+Bundle '29decibel/codeschool-vim-theme'
+
+Bundle 'godlygeek/tabular'
+
+""""""""""""""""""""""""""""
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+
+let base16colorspace=256  " Access colors present in 256 colorspace
+set background=dark
+colorscheme base16-ocean
+" colorscheme codeschool
+set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
+
+
+let mapleader = ","
+set hlsearch
+set nu
+
+" Tabs
+" 切换tabs
+map <S-H> gT  
+map <S-L> gt
+
+" j/k 快一点
+set ttyfast
+set lazyredraw 
+
+" soft wrap line
+set wrap
+
+" 全局设置下tab
+set tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
+
+"
+    map <leader>co  :!source ~/.config/base16-shell/base16-ocean.dark.sh<CR>
+""
+
+
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
+
+
+" ============= Ctags =====================
+"   set tags=./tags;/,~/.vimtags
+    set tags=./tags;/,~/.vimtags
+    " Make tags placed in .git/tags file available in all levels of a repository
+    let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+    if gitroot != ''
+       let &tags = &tags . ',' . gitroot . '/.git/tags'
+    endif
+
+    nnoremap <silent> <leader>tt :TagbarToggle<CR>
+
+" ========== END Ctags ====================
+
+
+" ============= NERDTree =====================
+    map <leader>e <plug>NERDTreeTabsToggle<CR>
+    " 打开当前文件所在目录的Tree
+    map <leader>ce :NERDTreeFind<CR>
+
+    let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+" ========== END NERDTree ====================
+"
+"
+
+" ============= CtrlP =====================
+" 使用the silver searcher来搜索, 不好用！！
+"    let g:ctrlp_user_command = 'ag %s -l'
+" =======END=== CtrlP =====================
+"
+
+" ============= Pymode  =====================
+    let g:pymode_lint_ignore = "E251,E309"
+    let g:pymode_options_max_line_length = 120
+    " let g:pymode_doc = 0
+" ========== END Pymode ===================
+" 
+    autocmd FileType python set fdm=syntax
+" 
+" =========== python ======================
+
+
+" ============= Indent Guide  =====================
+    let g:indent_guides_guide_size = 1
+    let g:indent_guides_enable_on_vim_startup = 1
+" ========== END Indent Guide ===================
+
+
+" ==================Omni Complete================
+" If you prefer the Omni-Completion tip window to close when a selection is
+" made, these lines close it on movement in insert mode or when leaving
+" insert mode
+" 在自动补全完成后，关掉那个代码提示的函数doc介绍那些
+" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" 如果要直接关掉就用
+set completeopt-=preview
+" ========END=======Omni Complete================
+
+
+" ============= NeoComplete =====================
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+" For cursor moving in insert mode(Not recommended)
+"inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplete#enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplete#enable_insert_char_pre = 1
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+
+
+" =====END===== NeoComplete =====================
+
+"
+" ============= UltiSnippet =====================
+
+" 切换文件类型同时切换snippets
+autocmd FileType * call UltiSnips#FileTypeChanged()
+
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" ===END======= UltiSnippet =====================
+"
+"
+" ============= AirLine =====================
+"    set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    " let g:airline_symbols.branch = '⎇'
+    " let g:airline_symbols.branch = '⎇'
+    let g:airline_symbols.branch = ''
+" ========== END AirLine ====================
+
+
+" ============= Syntastic =====================
+" 不检查python语法
+    let g:syntastic_mode_map = {
+        \ "mode": "active",
+        \ "active_filetypes": ["javascript" ],
+        \ "passive_filetypes": ["python"] }
+
+    " let g:syntastic_always_populate_loc_list = 1
+    " let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 0
+    let g:syntastic_check_on_wq = 1
+
+" ====END====== Syntastic =====================
+
+
+" ============= QuickFix =====================
+" autocmd QuickFixCmdPost [^l]* nested cwindow
+" autocmd QuickFixCmdPost    l* nested lwindow
+" ====END====== QuickFix =====================
+
+
+" ============= Emmet Html =====================
+    let g:user_emmet_install_global = 0
+    autocmd FileType html,css EmmetInstall
+" ===END======= Emmet Html =====================
+"
+"
+" ===============JS Settings====================
+    let g:used_javascript_libs = ''
+    autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
+    autocmd BufReadPre *.js let b:javascript_lib_use_angularui = 1
+
+    autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
+
+    " autocmd FileType javascript syntax region foldBraces start=/{(/ end=/})/ transparent fold keepend extend fdm=syntax
+" =====END=======JS settings====================
+"
+
+" ===============HTML settings====================
+    autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
+" ====END========HTML settings====================
