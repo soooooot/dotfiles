@@ -2,6 +2,9 @@
     name = soooooot
     email = sooooootZHOU@gmail.com
 
+[core]
+    editor = vim
+
 [alias]
     st = status
     co = checkout
