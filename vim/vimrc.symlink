@@ -127,6 +127,7 @@ colorscheme base16-ocean
 " colorscheme codeschool
 set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
 
+syntax on
 
 let mapleader = ","
 set hlsearch
