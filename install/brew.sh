@@ -32,4 +32,12 @@ brew install tmux
 # command: ag (like ack,grep)
 brew install the_silver_searcher
 
+brew install nvm
+# brew install libsass
+
+brew install watchman
+
+# image lib
+brew install libtiff libjpeg webp little-cms2
+
 exit 0

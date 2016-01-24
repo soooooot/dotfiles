@@ -1,0 +1,35 @@
+# enable vi mode
+set -o vi
+
+# base color
+BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+
+# iterm2 ctrl-r for back-reverse-search doesn't work issue
+# https://github.com/sorin-ionescu/prezto/issues/596
+bindkey -M viins '^r' history-incremental-search-backward
+bindkey -M vicmd '^r' history-incremental-search-backward
+
+
+#  nvm 
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+# python virtualenv wrapper
+#
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
+
+# set android
+export ANDROID_HOME=/usr/local/opt/android-sdk
+
+
+# Start manually:
+
+# pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+
+# Stop manually:
+
+# pg_ctl -D /usr/local/var/postgres stop -s -m fast
