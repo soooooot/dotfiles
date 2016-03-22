@@ -40,4 +40,6 @@ brew install watchman
 # image lib
 brew install libtiff libjpeg webp little-cms2
 
+brew install libmemcached
+
 exit 0

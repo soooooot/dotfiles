@@ -4,6 +4,7 @@
 
 [core]
     editor = vim
+	excludesfile = /Users/soooooot/.gitignore_global
 
 [alias]
     st = status
@@ -11,7 +12,22 @@
     br = branch
     ci = commit
 
+; [merge]
+;     tool = meld
+; [mergetool "meld"]
+;     path = meld
+[diff]
+    tool = kale
+[difftool "kale"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [merge]
-    tool = meld
-[mergetool "meld"]
-    path = meld
+    tool = kale
+[mergetool "kale"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustExitCode = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

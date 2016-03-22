@@ -195,7 +195,7 @@ cmap w!! w !sudo tee % >/dev/null
 " 使用the silver searcher来搜索, 不好用！！
 "    let g:ctrlp_user_command = 'ag %s -l'
     let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules)$',
+      \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|bower_components)$',
       \ 'file': '\v\.(exe|so|dll)$',
       \ 'link': '\v\.(swp)$',
       \ }
@@ -459,8 +459,9 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 " ============= Emmet Html =====================
-    let g:user_emmet_install_global = 0
-    autocmd FileType html,css EmmetInstall
+    " let g:user_emmet_install_global = 0
+
+    " autocmd FileType html,css EmmetInstall
 " ===END======= Emmet Html =====================
 "
 "
@@ -478,3 +479,7 @@ let g:UltiSnipsEditSplit="vertical"
 " ===============HTML settings====================
     autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 " ====END========HTML settings====================
+"
+"
+
+Plugin 'editorconfig/editorconfig-vim'
