@@ -1,9 +1,10 @@
 tags
 
-*.swp
+*.sw[op]
 *.orig
 .ropeproject
 workbench.xml
+.DS_Store
 
 
 # =================customized================

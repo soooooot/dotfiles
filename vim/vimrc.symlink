@@ -82,6 +82,7 @@ Bundle 'tpope/vim-commentary'
 " 相对行号
 Bundle 'myusuf3/numbers.vim'
 
+" 快速移动
 Plugin 'Lokaltog/vim-easymotion'
 
 " Git 修改行数
@@ -89,6 +90,7 @@ Bundle 'mhinz/vim-signify'
 
 Plugin 'bling/vim-airline'
 
+" 静态lint
 Bundle 'scrooloose/syntastic'
 
 " html 
@@ -117,6 +119,7 @@ Bundle 'othree/javascript-libraries-syntax.vim'
 " colorscheme
 Bundle '29decibel/codeschool-vim-theme'
 
+" 对齐
 Bundle 'godlygeek/tabular'
 
 """"""""""""""""""""""""""""
@@ -449,6 +452,9 @@ let g:UltiSnipsEditSplit="vertical"
     let g:syntastic_check_on_open = 0
     let g:syntastic_check_on_wq = 1
 
+    let g:syntastic_javascript_checkers = ['eslint']
+
+
 " ====END====== Syntastic =====================
 
 
@@ -479,7 +485,24 @@ let g:UltiSnipsEditSplit="vertical"
 " ===============HTML settings====================
     autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 " ====END========HTML settings====================
-"
-"
+
+
+" ===============Easy Motion======================
+    nmap s <Plug>(easymotion-overwin-f2)
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+    map <Leader>w <Plug>(easymotion-w)
+    map <Leader>b <Plug>(easymotion-b)
+
+" ====END========Easy Motion======================
+
+" =================Misc===========================
+" 据说有些情况会有中文乱码的解决方案 Chinese 
+" set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+" =================Misc end=======================
 
 Plugin 'editorconfig/editorconfig-vim'
+
+
+set nobackup
+set noswapfile

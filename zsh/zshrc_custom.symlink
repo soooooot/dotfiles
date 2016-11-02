@@ -14,7 +14,12 @@ bindkey -M vicmd '^r' history-incremental-search-backward
 
 #  nvm 
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+# electron mirror
+export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
+
+# source $(brew --prefix nvm)/nvm.sh
 
 # python virtualenv wrapper
 #
@@ -22,9 +27,14 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 source /usr/local/bin/virtualenvwrapper_lazy.sh
 
+# java 
+export JAVA_HOME=`/usr/libexec/java_home`
+
 # set android
 export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_NDK=/usr/local/opt/android-ndk
 
+export GRADLE_HOME=/usr/local/opt/gradle/libexec
 
 # Start manually:
 

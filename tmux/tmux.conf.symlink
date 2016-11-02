@@ -9,10 +9,16 @@ set-window-option -g mode-keys vi
 
 
 # Mouse works as expected
-set -g mode-mouse on
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
-set -g mouse-select-window on
+set-option -g mouse on
+# mouse work for 2.0 below
+# set -g mode-mouse on
+# set -g mouse-select-pane on
+# set -g mouse-resize-pane on
+# set -g mouse-select-window on
+
+
+# DO NOT automattica rename tmux name
+set-option -g allow-rename off
 
 
 # 256 colors for vim

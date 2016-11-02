@@ -1,18 +1,22 @@
+
 [user]
     name = soooooot
     email = sooooootZHOU@gmail.com
 
 [core]
     editor = vim
-	excludesfile = /Users/soooooot/.gitignore_global
+    excludesfile = /Users/soooooot/.gitignore_global
 
 [alias]
     st = status
     co = checkout
     br = branch
     ci = commit
+[alias]
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 
 ; [merge]
+;
 ;     tool = meld
 ; [mergetool "meld"]
 ;     path = meld
