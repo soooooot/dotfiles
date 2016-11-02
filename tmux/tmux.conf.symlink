@@ -15,6 +15,12 @@ set-option -g mouse on
 # set -g mouse-select-pane on
 # set -g mouse-resize-pane on
 # set -g mouse-select-window on
+#
+# Alt-Arrow: Resize panes
+bind -n M-Left resize-pane -L
+bind -n M-Right resize-pane -R
+bind -n M-Up resize-pane -U
+bind -n M-Down resize-pane -D
 
 
 # DO NOT automattica rename tmux name
