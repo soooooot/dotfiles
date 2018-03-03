@@ -31,7 +31,9 @@ source /usr/local/bin/virtualenvwrapper_lazy.sh
 export JAVA_HOME=`/usr/libexec/java_home`
 
 # set android
-export ANDROID_HOME=/usr/local/opt/android-sdk
+# export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_HOME=/usr/local/share/android-sdk
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 export ANDROID_NDK=/usr/local/opt/android-ndk
 
 export GRADLE_HOME=/usr/local/opt/gradle/libexec

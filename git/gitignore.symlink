@@ -3,6 +3,7 @@ tags
 *.sw[op]
 *.orig
 .ropeproject
+.vscode
 workbench.xml
 .DS_Store
 
