@@ -8,6 +8,6 @@ nvm use stable
 
 
 # install some common node bin
-npm install bower -g
-npm install gulp -g
+# npm install bower -g
+# npm install gulp -g
 # npm install node-sass -g

@@ -121,6 +121,8 @@ Bundle 'taiansu/nerdtree-ag'
 " 补全
 Bundle 'othree/javascript-libraries-syntax.vim'
 
+Bundle 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 
 " colorscheme
 Bundle '29decibel/codeschool-vim-theme'
@@ -139,8 +141,8 @@ filetype plugin indent on    " required
 
 let base16colorspace=256  " Access colors present in 256 colorspace
 set background=dark
-colorscheme base16-ocean
-" colorscheme codeschool
+" colorscheme base16-ocean
+colorscheme codeschool
 set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
 
 syntax on
@@ -166,6 +168,9 @@ set wrap
 " 全局设置下tab
 set tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
+"
+
+set clipboard=unnamed
 
 "
     map <leader>co  :!source ~/.config/base16-shell/base16-ocean.dark.sh<CR>
@@ -422,7 +427,7 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到�
 " ============= UltiSnippet =====================
 
 " 切换文件类型同时切换snippets
-autocmd FileType * call UltiSnips#FileTypeChanged()
+" autocmd FileType * call UltiSnips#FileTypeChanged()
 
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -443,6 +448,10 @@ let g:UltiSnipsEditSplit="vertical"
     " let g:airline_symbols.branch = '⎇'
     " let g:airline_symbols.branch = '⎇'
     let g:airline_symbols.branch = ''
+
+    set statusline+=%#goStatuslineColor#
+    set statusline+=%{go#statusline#Show()}
+    set statusline+=%*
 " ========== END AirLine ====================
 
 
@@ -467,6 +476,10 @@ let g:UltiSnipsEditSplit="vertical"
 " ============= QuickFix =====================
 " autocmd QuickFixCmdPost [^l]* nested cwindow
 " autocmd QuickFixCmdPost    l* nested lwindow
+
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
 " ====END====== QuickFix =====================
 
 
@@ -478,19 +491,34 @@ let g:UltiSnipsEditSplit="vertical"
 "
 "
 " ===============JS Settings====================
-    let g:used_javascript_libs = ''
-    autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
-    autocmd BufReadPre *.js let b:javascript_lib_use_angularui = 1
+"    let g:used_javascript_libs = ''
+"    autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
+"    autocmd BufReadPre *.js let b:javascript_lib_use_angularui = 1
 
-    autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
+"    autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
 
     " autocmd FileType javascript syntax region foldBraces start=/{(/ end=/})/ transparent fold keepend extend fdm=syntax
 " =====END=======JS settings====================
 "
 
 " ===============HTML settings====================
-    autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
+"    autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 " ====END========HTML settings====================
+
+
+" ===============GoLang settings==================
+
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
+
+autocmd FileType go nmap <leader>gob  <Plug>(go-build)
+autocmd FileType go nmap <leader>gor  <Plug>(go-run)
+autocmd FileType go nmap <Leader>goin <Plug>(go-info)
+autocmd FileType go nmap <Leader>got <Plug>(go-test)
+autocmd FileType go nmap <Leader>gof <Plug>(go-test-func)
+
+let g:go_auto_sameids = 1
+
+" ===============GoLang settings==================
 
 
 " ===============Easy Motion======================
@@ -499,6 +527,7 @@ let g:UltiSnipsEditSplit="vertical"
     map <Leader>kk <Plug>(easymotion-k)
     map <Leader>w <Plug>(easymotion-w)
     map <Leader>b <Plug>(easymotion-b)
+
 
 " ====END========Easy Motion======================
 

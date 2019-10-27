@@ -6,6 +6,8 @@
 [core]
     editor = vim
     excludesfile = /Users/soooooot/.gitignore_global
+	; autocrlf = false
+	; safecrlf = false
 
 [alias]
     st = status

@@ -6,12 +6,12 @@ root = true
 indent_style = space
 indent_size = 2
 
-[**.{css,less,sass}]
+[**.{css,less,sass,wxss}]
 indent_style = space
 indent_size = 2
 
-[**.html]
+[**.{html,xml,wxml}]
 indent_style = space
 indent_size = 2
-max_char = 78
+; max_char = 78
 brace_style = expand

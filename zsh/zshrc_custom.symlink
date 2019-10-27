@@ -13,8 +13,11 @@ bindkey -M vicmd '^r' history-incremental-search-backward
 
 
 #  nvm 
-export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR=~/.nvm
+# # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# source $(brew --prefix nvm)/nvm.sh
+alias nvminit='export NVM_DIR=~/.nvm && source $(brew --prefix nvm)/nvm.sh'
+
 
 # electron mirror
 export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
@@ -27,16 +30,25 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
 source /usr/local/bin/virtualenvwrapper_lazy.sh
 
+
+# golang
+export GOPATH="${HOME}/.go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+# test -d "${GOPATH}" || mkdir "${GOPATH}"
+# test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+
 # java 
-export JAVA_HOME=`/usr/libexec/java_home`
+# export JAVA_HOME=`/usr/libexec/java_home`
 
 # set android
 # export ANDROID_HOME=/usr/local/opt/android-sdk
-export ANDROID_HOME=/usr/local/share/android-sdk
-export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
-export ANDROID_NDK=/usr/local/opt/android-ndk
-
-export GRADLE_HOME=/usr/local/opt/gradle/libexec
+# export ANDROID_HOME=/usr/local/share/android-sdk
+# export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+# export ANDROID_NDK=/usr/local/opt/android-ndk
+# 
+# export GRADLE_HOME=/usr/local/opt/gradle/libexec
 
 # Start manually:
 
@@ -45,3 +57,9 @@ export GRADLE_HOME=/usr/local/opt/gradle/libexec
 # Stop manually:
 
 # pg_ctl -D /usr/local/var/postgres stop -s -m fast
+#
+#
+# lws
+# export BOOST_ROOT=`brew --prefix boost`
+# export OPENSSL_ROOT_DIR=`brew --prefix openssl`
+# export PKG_CONFIG_PATH=`brew --prefix libsodium`

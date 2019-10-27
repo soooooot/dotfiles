@@ -20,7 +20,7 @@ echo "Installing homebrew packages..."
 # brew install hub
 
 # I need with-lua for neocomplete
-brew install vim --override-system-vim --with-lua
+# brew install vim --override-system-vim --with-lua
 
 # tmux vi-copy will use that
 brew install reattach-to-user-namespace
