@@ -16,8 +16,10 @@ bindkey -M vicmd '^r' history-incremental-search-backward
 # export NVM_DIR=~/.nvm
 # # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 # source $(brew --prefix nvm)/nvm.sh
-alias nvminit='export NVM_DIR=~/.nvm && source $(brew --prefix nvm)/nvm.sh'
-
+alias nvminit='export NVM_DIR=~/.nvm && source $(brew --prefix nvm)/nvm.sh && export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node'
+export PATH="$PATH:/Users/soooooot/.nvm/versions/node/v19.8.1/bin"
+export NODE_PATH="/Users/soooooot/.nvm/versions/node/v19.8.1/lib/node_modules"
+alias syncNodePath="NODE_BIN_PATH=`which node`;export NODE_PATH=${NODE_BIN_PATH%/bin/node}/lib/node_modules"
 
 # electron mirror
 export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
@@ -28,7 +30,7 @@ export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
 #
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper_lazy.sh
+# source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 
 # golang
@@ -38,6 +40,7 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # test -d "${GOPATH}" || mkdir "${GOPATH}"
 # test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+
 
 # java 
 # export JAVA_HOME=`/usr/libexec/java_home`
@@ -63,3 +66,29 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # export BOOST_ROOT=`brew --prefix boost`
 # export OPENSSL_ROOT_DIR=`brew --prefix openssl`
 # export PKG_CONFIG_PATH=`brew --prefix libsodium`
+
+# 中科大的镜像
+# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+# 清华
+# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+# 阿里云
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+
+# 关闭流氓收集数据
+export SCARF_ANALYTICS=false
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# export FZF_DEFAULT_COMMAND='ag -g ""'
+
+# export SOLANAPATH="${HOME}/.local/share/solana/install/active_release"
+# export PATH="$PATH:${SOLANAPATH}/bin"
+# alias solanainit='export PATH="$PATH:${SOLANAPATH}/bin"'
+#
+#
+
+# nvim 的中文问题
+alias nvim='export LANG=zh_CN.UTF-8 && nvim'

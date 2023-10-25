@@ -1,230 +1,210 @@
-" set vundle
-set nocompatible              " be iMproved, required
-filetype off                  " required
+let $BUNDLE = expand("$HOME/.vim/bundle")
+let g:python3_host_prog='/usr/local/bin/python3'
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin(expand($BUNDLE))
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
-
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-
-
-" My Install Bundle
-Bundle 'klen/python-mode'
-
-Bundle 'chriskempson/base16-vim'
+" ===== common START ======
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 " NREDTree
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
+" Plug 'scrooloose/nerdtree'
+" Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'taiansu/nerdtree-ag'
 
 " Ctrl-P 
-" Bundle 'kien/ctrlp.vim'  the project is unmaintained
-Bundle 'ctrlpvim/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'  the project is unmaintained
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'airblade/vim-rooter', { 'on': [] }
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Indent Guides 显示缩进
-Bundle 'nathanaelkane/vim-indent-guides'
-" Bundle 'Yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides'
 
-"
-" Bundle 'Shougo/neocomplete.vim'
-" Bundle 'Shougo/neosnippet'
-" Bundle 'Shougo/neosnippet-snippets'
-"
-
-" YouCompleteMe
-Bundle 'Valloric/YouCompleteMe'
-
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-
-" Javascript html
-" Plugin 'burnettk/vim-angular'
-"
-" vue
-Plugin 'posva/vim-vue'
-
-Plugin 'leafgarland/typescript-vim'
-
-" Bundle 'ternjs/tern_for_vim'
-
-Bundle 'jelera/vim-javascript-syntax'
-
-Bundle 'briancollins/vim-jst'
-
-" 文档上说要两个一起用
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'einars/js-beautify'
-
-
-Plugin 'dimasg/vim-mark'
-
-" 注释
-" Plugin 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-commentary'
-
-" 相对行号
-Bundle 'myusuf3/numbers.vim'
+Plug 'tpope/vim-fugitive'
 
 " 快速移动
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
+" Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+
+
+Plug 'rking/ag.vim'
+
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'tpope/vim-commentary'
 
 " Git 修改行数
-Bundle 'mhinz/vim-signify'
+Plug 'mhinz/vim-signify'
 
-Plugin 'bling/vim-airline'
+" LSP 补全
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" 静态lint
-Bundle 'scrooloose/syntastic'
+Plug 'godlygeek/tabular', { 'on':  'Tabularize' }
+" ===== common END======
 
-" html 
-Plugin 'mattn/emmet-vim'
+" note taking
+Plug 'vimwiki/vimwiki'
 
-" CSS
-Bundle 'ap/vim-css-color'
-
-" tag bar
-Bundle 'majutsushi/tagbar'
-
-" ag search 
-Bundle 'rking/ag.vim'
-Bundle 'taiansu/nerdtree-ag'
+" markdown
+Plug 'preservim/vim-markdown'
 
 
-"""""""" javsscript /html"""
+" colors
+Plug 'altercation/vim-colors-solarized'
+Plug 'tomasiser/vim-code-dark'
+Plug 'tomasr/molokai'
 
-" 先看看不用的效果, 暂时不装这个了
-" Plugin 'pangloss/vim-javascript'
-
-" 补全
-Bundle 'othree/javascript-libraries-syntax.vim'
-
-Bundle 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" web
+Plug 'mattn/emmet-vim', {'for': ['html', 'javascriptreact']}
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 
-" colorscheme
-Bundle '29decibel/codeschool-vim-theme'
+" golang
+Plug 'fatih/vim-go', {'for': 'go'}
 
-" 对齐
-Bundle 'godlygeek/tabular'
 
-""""""""""""""""""""""""""""
+" snippets
+" Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
+call plug#end() " Should run at last
 
-let base16colorspace=256  " Access colors present in 256 colorspace
-set background=dark
-" colorscheme base16-ocean
-colorscheme codeschool
-set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
-
+" drop vi support - kept for vim compatibility but not needed for nvim
+set nocompatible
 syntax on
+filetype plugin on
+
 
 let mapleader = ","
-set hlsearch
-set nu
 
-set backspace=2  " make backspace work like most other apps
+" number of lines at the beginning and end of files checked for file-specific vars
+set modelines=0
 
-" Tabs
-" 切换tabs
-map <S-H> gT  
-map <S-L> gt
+" reload files changed outside of Vim not currently modified in Vim (needs below)
+" set autoread
 
-" j/k 快一点
-set ttyfast
-set lazyredraw 
+" http://stackoverflow.com/questions/2490227/how-does-vims-autoread-work#20418591
+au FocusGained,BufEnter * :silent! !
 
-" soft wrap line
-set wrap
+" use Unicode
+set encoding=utf-8
+set fenc=utf-8
+" set fencs=iso-2022-jp,euc-jp,cp932
 
-" 全局设置下tab
-set tabstop=8 expandtab shiftwidth=4 softtabstop=4
+" errors flash screen rather than emit beep
+set visualbell
 
-"
+" make Backspace work like Delete
+set backspace=indent,eol,start
 
-set clipboard=unnamed
+" don't create `filename~` backups
+set nobackup
 
-"
-    map <leader>co  :!source ~/.config/base16-shell/base16-ocean.dark.sh<CR>
-""
+" don't create temp files
+set noswapfile
 
+" line numbers and distances
+" set relativenumber 
+set number 
+
+" number of lines offset when jumping
+set scrolloff=2
+
+" Tab key enters 2 spaces
+" To enter a TAB character when `expandtab` is in effect,
+" CTRL-v-TAB
+set expandtab tabstop=2 shiftwidth=2 softtabstop=2 
+
+" Indent new line the same as the preceding line
+set autoindent
+
+" statusline indicates insert or normal mode
+set showmode showcmd
+
+" make scrolling and painting fast
+" ttyfast kept for vim compatibility but not needed for nvim
+set ttyfast lazyredraw
+
+" highlight matching parens, braces, brackets, etc
+set showmatch
+
+" http://vim.wikia.com/wiki/Searching
+set hlsearch incsearch ignorecase smartcase
+
+" As opposed to `wrap`
+"set nowrap
+
+" http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+set autochdir
+
+" open new buffers without saving current modifications (buffer remains open)
+set hidden
+
+" http://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
+set wildmenu wildmode=list:longest,full
+
+" StatusLine always visible, display full path
+" http://learnvimscriptthehardway.stevelosh.com/chapters/17.html
+set laststatus=2 statusline=%F
+
+" Use system clipboard
+" http://vim.wikia.com/wiki/Accessing_the_system_clipboard
+set clipboard=unnamedplus
+
+" Show character column
+highlight ColorColumn ctermbg=DarkBlue
+set colorcolumn=120
+
+" CursorLine - sometimes autocmds are not performant; turn off if so
+" http://vim.wikia.com/wiki/Highlight_current_line
+set cursorline
+" Normal mode
+" highlight CursorLine ctermbg=None
+" autocmd InsertEnter * highlight  CursorLine ctermbg=17 ctermfg=None
+" autocmd InsertLeave * highlight  CursorLine ctermbg=None ctermfg=None
+
+" color
+colorscheme solarized
 
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
 
+" ======== 配置 emmet ===============
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : ['jsx', 'txs'],
+\      'attribute_name': {'class': 'className', 'for': 'htmlFor'}, 
+\      'empty_element_suffix': ' />', 
+\  },
+\}
 
-" ============= Ctags =====================
-"   set tags=./tags;/,~/.vimtags
-    set tags=./tags;/,~/.vimtags
-    " Make tags placed in .git/tags file available in all levels of a repository
-    let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-    if gitroot != ''
-       let &tags = &tags . ',' . gitroot . '/.git/tags'
-    endif
-
-    nnoremap <silent> <leader>tt :TagbarToggle<CR>
-
-" ========== END Ctags ====================
+" ==END=== 配置 emmet ===============
 
 
 " ============= NERDTree =====================
-    map <leader>e <plug>NERDTreeTabsToggle<CR>
-    " 打开当前文件所在目录的Tree
-    map <leader>ce :NERDTreeFind<CR>
-
-    let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-" ========== END NERDTree ====================
+" map <leader>e :NERDTreeTabsToggle<CR>
+" " 打开当前文件所在目录的Tree
+" map <leader>ce :NERDTreeFind<CR>
+" 
+" let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+" " ========== END NERDTree ====================
 "
 "
 
 " ============= CtrlP =====================
 " 使用the silver searcher来搜索, 不好用！！
 "    let g:ctrlp_user_command = 'ag %s -l'
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|bower_components|release|build)$',
-      \ 'file': '\v\.(exe|so|dll)$',
-      \ 'link': '\v\.(swp)$',
-      \ }
+"     let g:ctrlp_custom_ignore = {
+"       \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|bower_components|release|build)$',
+"       \ 'file': '\v\.(exe|so|dll)$',
+"       \ 'link': '\v\.(swp)$',
+"       \ }
 " =======END=== CtrlP =====================
-"
-
-" ============= Pymode  =====================
-    let g:pymode_lint_ignore = "E251,E309"
-    let g:pymode_options_max_line_length = 120
-    " let g:pymode_doc = 0
-" ========== END Pymode ===================
-" 
-    autocmd FileType python set fdm=syntax
-" 
-" =========== python ======================
 
 
 " ============= Indent Guide  =====================
@@ -233,300 +213,27 @@ cmap w!! w !sudo tee % >/dev/null
 " ========== END Indent Guide ===================
 
 
-" ==================Omni Complete================
-" If you prefer the Omni-Completion tip window to close when a selection is
-" made, these lines close it on movement in insert mode or when leaving
-" insert mode
-" 在自动补全完成后，关掉那个代码提示的函数doc介绍那些
-" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" 如果要直接关掉就用
-set completeopt-=preview
-" ========END=======Omni Complete================
-"
-" =====START========YouCompleteMe================
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_min_num_identifier_candidate_chars = 0
-" 离开插入模式后自动关闭预览窗口"
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-"" 关闭了自动打开补全 0-关闭 1-开启
-let g:ycm_auto_trigger = 1
-let g:ycm_filetype_whitelist = { '*': 1 }
-let g:ycm_filetype_blacklist = {
-      \ 'tagbar' : 1,
-      \ 'qf' : 1,
-      \ 'notes' : 1,
-      \ 'markdown' : 1,
-      \ 'unite' : 1,
-      \ 'text' : 1,
-      \ 'vimwiki' : 1,
-      \ 'pandoc' : 1,
-      \ 'infolog' : 1,
-      \ 'mail' : 1
-      \}
-let g:ycm_filetype_specific_completion_to_disable = {
-      \ 'gitcommit': 1
-      \}
-let g:ycm_show_diagnostics_ui = 1
-let g:ycm_error_symbol = '>>'
-let g:ycm_warning_symbol = '>>'
-let g:ycm_enable_diagnostic_signs = 1
-let g:ycm_enable_diagnostic_highlighting = 1
-let g:ycm_echo_current_diagnostic = 1
-let g:ycm_always_populate_location_list = 0
-let g:ycm_open_loclist_on_ycm_diags = 1
-let g:ycm_allow_changing_updatetime = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_collect_identifiers_from_Tags_files = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_extra_conf_vim_data = []
-let g:ycm_path_to_python_interpreter = ''
-let g:ycm_server_use_vim_stdout = 0
-let g:ycm_server_keep_logfiles = 0
-let g:ycm_server_log_level = 'info'
-let g:ycm_auto_start_csharp_server = 1
-let g:ycm_auto_stop_csharp_server = 1
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 0
-let g:ycm_max_diagnostics_to_display = 30
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
-let g:ycm_key_detailed_diagnostics = '<leader>d'
-let g:ycm_global_ycm_extra_conf = ''
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_extra_conf_globlist = []
-let g:ycm_filepath_completion_use_working_dir = 0
-let g:ycm_semantic_triggers =  {
-  \   'c' : ['->', '.'],
-  \   'objc' : ['->', '.'],
-  \   'ocaml' : ['.', '#'],
-  \   'cpp,objcpp' : ['->', '.', '::'],
-  \   'perl' : ['->'],
-  \   'php' : ['->', '::'],
-  \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-  \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-  \   'ruby' : ['.', '::'],
-  \   'lua' : ['.', ':'],
-  \   'erlang' : [':'],
-  \   'go' : ['.'],
-  \ }
-"" 缓存补全 1-开启  0-关闭
-let g:ycm_cache_omnifunc = 0
-let g:ycm_use_ultisnips_completer = 1
-let g:ycm_goto_buffer_command = 'same-buffer'
-let g:ycm_disable_for_files_larger_than_kb = 1000
-" 上下左右键的行为 会显示其他信息
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处"
-" end YouCompleteMe
-" =====START========YouCompleteMe================
-
-
-"" ============= NeoComplete =====================
-""Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-"" Disable AutoComplPop.
-"let g:acp_enableAtStartup = 0
-"" Use neocomplete.
-"let g:neocomplete#enable_at_startup = 1
-"" Use smartcase.
-"let g:neocomplete#enable_smart_case = 1
-"" Set minimum syntax keyword length.
-"let g:neocomplete#sources#syntax#min_keyword_length = 3
-"let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"
-"" Define dictionary.
-"let g:neocomplete#sources#dictionary#dictionaries = {
-"    \ 'default' : '',
-"    \ 'vimshell' : $HOME.'/.vimshell_hist',
-"    \ 'scheme' : $HOME.'/.gosh_completions'
-"        \ }
-"
-"" Define keyword.
-"if !exists('g:neocomplete#keyword_patterns')
-"    let g:neocomplete#keyword_patterns = {}
-"endif
-"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-"
-"" Plugin key-mappings.
-"inoremap <expr><C-g>     neocomplete#undo_completion()
-"inoremap <expr><C-l>     neocomplete#complete_common_string()
-"
-"" Recommended key-mappings.
-"" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-"  return neocomplete#close_popup() . "\<CR>"
-"  " For no inserting <CR> key.
-"  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-"endfunction
-"" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-y>  neocomplete#close_popup()
-"inoremap <expr><C-e>  neocomplete#cancel_popup()
-"" Close popup by <Space>.
-""inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-"
-"" For cursor moving in insert mode(Not recommended)
-""inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-""inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-""inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-""inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-"" Or set this.
-""let g:neocomplete#enable_cursor_hold_i = 1
-"" Or set this.
-""let g:neocomplete#enable_insert_char_pre = 1
-"
-"" AutoComplPop like behavior.
-""let g:neocomplete#enable_auto_select = 1
-"
-"" Shell like behavior(not recommended).
-""set completeopt+=longest
-""let g:neocomplete#enable_auto_select = 1
-""let g:neocomplete#disable_auto_complete = 1
-""inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-"
-"" Enable omni completion.
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"
-"" Enable heavy omni completion.
-"if !exists('g:neocomplete#sources#omni#input_patterns')
-"  let g:neocomplete#sources#omni#input_patterns = {}
-"endif
-""let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-""let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-""let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-"
-"" For perlomni.vim setting.
-"" https://github.com/c9s/perlomni.vim
-"let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"
-"
-"
-"" =====END===== NeoComplete =====================
-
-"
-" ============= UltiSnippet =====================
-
-" 切换文件类型同时切换snippets
-" autocmd FileType * call UltiSnips#FileTypeChanged()
-
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-" ===END======= UltiSnippet =====================
-"
-"
-" ============= AirLine =====================
-"    set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
-    " let g:airline_symbols.branch = '⎇'
-    " let g:airline_symbols.branch = '⎇'
-    let g:airline_symbols.branch = ''
-
-    set statusline+=%#goStatuslineColor#
-    set statusline+=%{go#statusline#Show()}
-    set statusline+=%*
-" ========== END AirLine ====================
-
-
-" ============= Syntastic =====================
-" 不检查python语法
-    let g:syntastic_mode_map = {
-        \ "mode": "active",
-        \ "active_filetypes": ["javascript" ],
-        \ "passive_filetypes": ["python"] }
-
-    " let g:syntastic_always_populate_loc_list = 1
-    " let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 0
-    let g:syntastic_check_on_wq = 1
-
-    let g:syntastic_javascript_checkers = ['eslint']
-
-
-" ====END====== Syntastic =====================
-
-
-" ============= QuickFix =====================
-" autocmd QuickFixCmdPost [^l]* nested cwindow
-" autocmd QuickFixCmdPost    l* nested lwindow
-
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
-" ====END====== QuickFix =====================
-
-
-" ============= Emmet Html =====================
-    " let g:user_emmet_install_global = 0
-
-    " autocmd FileType html,css EmmetInstall
-" ===END======= Emmet Html =====================
-"
-"
-" ===============JS Settings====================
-"    let g:used_javascript_libs = ''
-"    autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
-"    autocmd BufReadPre *.js let b:javascript_lib_use_angularui = 1
-
-"    autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2
-
-    " autocmd FileType javascript syntax region foldBraces start=/{(/ end=/})/ transparent fold keepend extend fdm=syntax
-" =====END=======JS settings====================
-"
-
-" ===============HTML settings====================
-"    autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
-" ====END========HTML settings====================
-
-
-" ===============GoLang settings==================
-
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
-
-autocmd FileType go nmap <leader>gob  <Plug>(go-build)
-autocmd FileType go nmap <leader>gor  <Plug>(go-run)
-autocmd FileType go nmap <Leader>goin <Plug>(go-info)
-autocmd FileType go nmap <Leader>got <Plug>(go-test)
-autocmd FileType go nmap <Leader>gof <Plug>(go-test-func)
-
-let g:go_auto_sameids = 1
-
-" ===============GoLang settings==================
+" " ============= AirLine =====================
+"     set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+"      if !exists('g:airline_symbols')
+"          let g:airline_symbols = {}
+"      endif
+"      " let g:airline_symbols.branch = '⎇'
+"      " let g:airline_symbols.branch = '⎇'
+"      let g:airline_symbols.branch = ''
+ 
+"      set statusline+=%#goStatuslineColor#
+"      set statusline+=%{go#statusline#Show()}
+"      set statusline+=%*
+" " ========== END AirLine ====================
 
 
 " ===============Easy Motion======================
     " nmap s <Plug>(easymotion-overwin-f2)
-    map <Leader>jj <Plug>(easymotion-j)
-    map <Leader>kk <Plug>(easymotion-k)
-    map <Leader>w <Plug>(easymotion-w)
-    map <Leader>b <Plug>(easymotion-b)
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+    map <Leader>m <Plug>(easymotion-w)
+    map <Leader>M <Plug>(easymotion-b)
 
 
 " ====END========Easy Motion======================
@@ -536,8 +243,22 @@ let g:go_auto_sameids = 1
 " set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 " =================Misc end=======================
 
-Plugin 'editorconfig/editorconfig-vim'
+" ===== vimwiki =======
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_dir_link = 'index'
+let g:vimwiki_folding = 'expr'
+let g:vimwiki_ext2syntax = {'.md': 'markdown',
+      \ '.mkd': 'markdown',
+      \ '.wiki': 'media'}
+" =END= vimwiki =======
 
 
-set nobackup
-set noswapfile
+" ============ vim-markdown ===========
+let g:vim_markdown_fenced_languages = ['ts=typescript']
+
+" ==END======= vim-markdown ===========
+
+source ~/.dotfiles/vim/coc.vim
+source ~/.dotfiles/vim/fzf.vim
+
